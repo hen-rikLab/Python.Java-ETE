@@ -1,7 +1,7 @@
 import os
 import subprocess
 
-diretorio_atividades = ".lista"
+diretorio_atividades = os.path.join(os.path.dirname(__file__), ".lista")
 
 def limpar_tela():
     os.system('cls' if os.name == 'nt' else 'clear')
