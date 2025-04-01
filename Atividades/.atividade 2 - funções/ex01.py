@@ -37,7 +37,7 @@ def menu():
         print("\n1. Adicionar Tarefa\n2. Listar Tarefas\n3. Concluir Tarefa\n4. Sair")
         opcao = input("Escolha: ")
         if opcao == "1":
-            adicionar_tarefa(input("Descrição: "), input("Prazo (YYYY-MM-DD): "))
+            adicionar_tarefa(input("Descrição: "), input("Prazo: "))
         elif opcao == "2":
             listar_tarefas()
         elif opcao == "3":
