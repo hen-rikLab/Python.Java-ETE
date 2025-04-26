@@ -1,0 +1,32 @@
+{
+  "carlos": {
+    "nome_usuario": "carlos",
+    "senha": "IsnjvDJD/ayU575DIa+/tsMMwviscdu6UrlHfXw+uGY=",
+    "salt": "RQPiUrZGyHOp5M0g/xtKsw==",
+    "saldo": 1550.0,
+    "transacoes": [
+      {
+        "tipo": "Dep\u00f3sito",
+        "valor": 50.0
+      },
+      {
+        "tipo": "Transfer\u00eancia",
+        "valor": 500.0,
+        "destino": "guto"
+      }
+    ]
+  },
+  "guto": {
+    "nome_usuario": "guto",
+    "senha": "tUly3wRooldv+hbsYGAo4R+lwHapW4onWnnKcAUowe0=",
+    "salt": "bCRw1/l+eYJItQlmKYem0g==",
+    "saldo": 501.0,
+    "transacoes": [
+      {
+        "tipo": "Recebimento",
+        "valor": 500.0,
+        "destino": "carlos"
+      }
+    ]
+  }
+}
