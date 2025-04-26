@@ -1,50 +1,66 @@
-import os
 import json
+import os
 
-script_dir = os.path.dirname(os.path.abspath(__file__))
-dados_dir = os.path.join(script_dir, "dados")
-os.makedirs(dados_dir, exist_ok=True)
-arquivo = os.path.join(dados_dir, "tarefas.json")
+def limpar_terminal():
+    os.system('cls' if os.name == 'nt' else 'clear')
 
 def carregar_tarefas():
-    return json.load(open(arquivo, "r", encoding="utf-8")) if os.path.exists(arquivo) else []
+    try:
+        with open('dados/tarefas.json', 'r') as f:
+            tarefas = json.load(f)
+            for t in tarefas:
+                if "feito" not in t:
+                    t["feito"] = False
+            return tarefas
+    except:
+        return []
 
 def salvar_tarefas(tarefas):
-    json.dump(tarefas, open(arquivo, "w", encoding="utf-8"), indent=4, ensure_ascii=False)
+    with open('dados/tarefas.json', 'w') as f:
+        json.dump(tarefas, f, indent=2)
 
-def adicionar_tarefa(descricao, prazo):
-    tarefas = carregar_tarefas()
-    tarefas.append({"descricao": descricao, "prazo": prazo, "concluida": False})
+def adicionar_tarefa(tarefas):
+    desc = input("Descrição: ")
+    prazo = input("Prazo: ")
+    tarefas.append({"descricao": desc, "prazo": prazo, "feito": False})
     salvar_tarefas(tarefas)
-    print("Tarefa adicionada!")
+    print("Tarefa adicionada com sucesso!")
 
-def listar_tarefas():
-    tarefas = sorted(carregar_tarefas(), key=lambda x: x["prazo"])
-    for i, t in enumerate(tarefas, 1):
-        print(f"{i}. {t['descricao']} - {t['prazo']} ({'✔' if t['concluida'] else 'X'})")
+def listar_tarefas(tarefas):
+    tarefas_ordenadas = sorted(tarefas, key=lambda x: x['prazo'])
+    for i, t in enumerate(tarefas_ordenadas):
+        status = "✔️" if t['feito'] else "❌"
+        print(f"{i+1}. {t['descricao']} - {t['prazo']} {status}")
+    passe = input("Pressione Enter para continuar...")
 
-def concluir_tarefa(indice):
-    tarefas = carregar_tarefas()
-    if 1 <= indice <= len(tarefas):
-        tarefas[indice - 1]["concluida"] = True
-        salvar_tarefas(tarefas)
-        print("Tarefa concluída!")
+def concluir_tarefa(tarefas):
+    listar_tarefas(tarefas)
+    n = int(input("Número da tarefa para concluir: ")) - 1
+    if 0 <= n < len(tarefas):
+        tarefas[n]['feito'] = True
     else:
-        print("Índice inválido.")
+        print("Número inválido.")
 
-def menu():
+def main ():
+    tarefas = carregar_tarefas()
     while True:
-        print("\n1. Adicionar Tarefa\n2. Listar Tarefas\n3. Concluir Tarefa\n4. Sair")
-        opcao = input("Escolha: ")
-        if opcao == "1":
-            adicionar_tarefa(input("Descrição: "), input("Prazo: "))
-        elif opcao == "2":
-            listar_tarefas()
-        elif opcao == "3":
-            listar_tarefas()
-            concluir_tarefa(int(input("Número da tarefa: ")))
-        elif opcao == "4":
+        print("\n1. Adicionar tarefa\n2. Listar tarefas\n3. Concluir tarefa\n0. Sair")
+        op = input("Opção: ")
+        limpar_terminal()
+
+        if op == "1":
+            adicionar_tarefa(tarefas)
+        elif op == "2":
+            listar_tarefas(tarefas)
+        elif op == "3":
+            concluir_tarefa(tarefas)
+        elif op == "0":
             break
+        else:
+            print("Opção inválida.")
 
+        limpar_terminal()
 
-menu()
+    salvar_tarefas(tarefas)
+
+main()
