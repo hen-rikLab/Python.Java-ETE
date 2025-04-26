@@ -5,6 +5,8 @@ def limpar_terminal():
     os.system('cls' if os.name == 'nt' else 'clear')
 
 def carregar_tarefas():
+    if not os.path.exists('dados'):
+        os.makedirs('dados')
     try:
         with open('dados/tarefas.json', 'r') as f:
             tarefas = json.load(f)
