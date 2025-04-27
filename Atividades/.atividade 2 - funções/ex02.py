@@ -1,6 +1,9 @@
 import json
 import os
 
+diretorio_raiz = os.path.dirname(__file__)
+diretorio = os.path.join(diretorio_raiz, 'dados/estoque.json')
+
 def limpar_terminal():
     os.system('cls' if os.name == 'nt' else 'clear')
 
@@ -8,13 +11,13 @@ def carregar_estoque():
     if not os.path.exists('dados'):
         os.makedirs('dados')
     try:
-        with open('dados/estoque.json', 'r') as f:
+        with open(diretorio, 'r') as f:
             return json.load(f)
     except:
         return []
 
 def salvar_estoque(estoque):
-    with open('dados/estoque.json', 'w') as f:
+    with open(diretorio, 'w') as f:
         json.dump(estoque, f, indent=2)
 
 def adicionar_produto(estoque):

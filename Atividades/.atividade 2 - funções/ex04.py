@@ -3,6 +3,9 @@ import os
 import hashlib
 import base64
 
+diretorio_raiz = os.path.dirname(__file__)
+diretorio = os.path.join(diretorio_raiz, 'dados/usuarios.json')
+
 def limpar_terminal():
     os.system('cls' if os.name == 'nt' else 'clear')
 
@@ -14,14 +17,12 @@ def hash_senha(senha, salt):
     return hashlib.pbkdf2_hmac('sha256', senha.encode(), salt, 100000)
 
 def salvar_usuarios(usuarios):
-    with open('dados/usuarios.json', 'w') as f:
+    with open(diretorio, 'w') as f:
         json.dump(usuarios, f, indent=2)
 
 def carregar_usuarios():
-    if not os.path.exists('dados'):
-        os.makedirs('dados') 
     try:
-        with open('dados/usuarios.json', 'r') as f:
+        with open(diretorio, 'r') as f:
             return json.load(f)
     except (FileNotFoundError, json.JSONDecodeError):
         return {}

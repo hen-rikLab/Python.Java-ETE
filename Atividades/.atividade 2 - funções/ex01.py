@@ -1,6 +1,9 @@
 import json
 import os
 
+diretorio_raiz = os.path.dirname(__file__)
+diretorio = os.path.join(diretorio_raiz, 'dados/tarefas.json')
+
 def limpar_terminal():
     os.system('cls' if os.name == 'nt' else 'clear')
 
@@ -8,7 +11,7 @@ def carregar_tarefas():
     if not os.path.exists('dados'):
         os.makedirs('dados')
     try:
-        with open('dados/tarefas.json', 'r') as f:
+        with open(diretorio, 'r') as f:
             tarefas = json.load(f)
             for t in tarefas:
                 if "feito" not in t:
@@ -18,7 +21,7 @@ def carregar_tarefas():
         return []
 
 def salvar_tarefas(tarefas):
-    with open('dados/tarefas.json', 'w') as f:
+    with open(diretorio, 'w') as f:
         json.dump(tarefas, f, indent=2)
 
 def adicionar_tarefa(tarefas):

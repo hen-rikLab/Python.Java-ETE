@@ -1,6 +1,9 @@
 import json
 import os
 
+diretorio_raiz = os.path.dirname(__file__)
+diretorio = os.path.join(diretorio_raiz, 'dados/reservas.json')
+
 def limpar_terminal():
     os.system('cls' if os.name == 'nt' else 'clear')
 
@@ -8,13 +11,13 @@ def carregar_reservas():
     if not os.path.exists('dados'):
         os.makedirs('dados')
     try:
-        with open('dados/reservas.json', 'r') as f:
+        with open(diretorio, 'r') as f:
             return json.load(f)
     except FileNotFoundError:
         return [[0 for _ in range(5)] for _ in range(5)] 
 
 def salvar_reservas(reservas):
-    with open('dados/reservas.json', 'w') as f:
+    with open(diretorio, 'w') as f:
         json.dump(reservas, f, indent=2)
 
 def exibir_mapa(reservas):

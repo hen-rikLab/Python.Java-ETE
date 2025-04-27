@@ -1,31 +1,41 @@
 {
-  "carlos": {
-    "nome_usuario": "carlos",
-    "senha": "IsnjvDJD/ayU575DIa+/tsMMwviscdu6UrlHfXw+uGY=",
-    "salt": "RQPiUrZGyHOp5M0g/xtKsw==",
-    "saldo": 1550.0,
+  "eu": {
+    "nome_usuario": "eu",
+    "senha": "GrU23Bnpxt2Rw+wmrRthzKTQLfwT4jVLJDQFvlBF2k4=",
+    "salt": "Ug2b6HCjbRRYtyIA/RpvFg==",
+    "saldo": 1.0,
+    "transacoes": []
+  },
+  "henrique": {
+    "nome_usuario": "henrique",
+    "senha": "rx+sz3bjzh6Ktdxz1XgrWI7Lvmx+p6L08tPLeJhUVxM=",
+    "salt": "QRpEtFgYq//zgC4JLLJsIw==",
+    "saldo": 500000.0,
+    "transacoes": []
+  },
+  "adm": {
+    "nome_usuario": "adm",
+    "senha": "h/hq8SP2wx5O0Cvrh63sxDhrJ4zDlOtHhlm9o+iOr68=",
+    "salt": "lPIrQ5pnxy0g8ce2rXzGgQ==",
+    "saldo": 39999999900.0,
     "transacoes": [
       {
-        "tipo": "Dep\u00f3sito",
-        "valor": 50.0
-      },
-      {
         "tipo": "Transfer\u00eancia",
-        "valor": 500.0,
-        "destino": "guto"
+        "valor": 100.0,
+        "destino": "teste"
       }
     ]
   },
-  "guto": {
-    "nome_usuario": "guto",
-    "senha": "tUly3wRooldv+hbsYGAo4R+lwHapW4onWnnKcAUowe0=",
-    "salt": "bCRw1/l+eYJItQlmKYem0g==",
-    "saldo": 501.0,
+  "teste": {
+    "nome_usuario": "teste",
+    "senha": "DeCDa8UdGzXTzQB/2TT+l6iOD2LDjUjNd32AEVml5WY=",
+    "salt": "QlG20XCSEIeFAzHCBwOE5w==",
+    "saldo": 101.0,
     "transacoes": [
       {
         "tipo": "Recebimento",
-        "valor": 500.0,
-        "destino": "carlos"
+        "valor": 100.0,
+        "destino": "adm"
       }
     ]
   }
